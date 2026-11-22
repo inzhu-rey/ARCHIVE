@@ -43,6 +43,8 @@ async function loadMemories() {
 function openModal() {
   $("memoryForm").reset();
   selectedPhotos = [];
+  selectedAudio = null;
+  $("audioPreview").innerHTML = "";
   $("preview").innerHTML = "";
   $("memoryDate").value = new Date().toISOString().slice(0, 10);
   $("memoryModal").showModal();
