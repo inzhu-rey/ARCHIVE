@@ -236,7 +236,28 @@ function showDetails(id) {
   const place = document.createElement("p");
   place.textContent = memory.place;
 
-  const actions = document.createElement("div");
+  if (memory.audio) {
+  const musicPlayer = document.createElement("div");
+  musicPlayer.className = "music-player";
+
+  const label = document.createElement("p");
+  label.className = "eyebrow";
+  label.textContent = "SOUNDTRACK OF THIS MEMORY";
+
+  const song = document.createElement("h3");
+  song.textContent = memory.songTitle || "Untitled song";
+
+  const artist = document.createElement("p");
+  artist.textContent = memory.songArtist || "Unknown artist";
+
+  const audio = document.createElement("audio");
+  audio.controls = true;
+  audio.preload = "metadata";
+  audio.src = URL.createObjectURL(memory.audio);
+
+  musicPlayer.append(label, song, artist, audio);
+  content.appendChild(musicPlayer);
+}const actions = document.createElement("div");
   actions.className = "detail-actions";
 
   const favorite = document.createElement("button");
