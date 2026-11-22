@@ -424,3 +424,49 @@ dialog::backdrop { background: #171715d9; }
 @media(max-width:390px) {
   .memory-grid { grid-template-columns: 1fr; }
 }
+/* MUSIC UPLOAD */
+
+.music-upload {
+  margin: 25px 0;
+  padding: 22px;
+  background: #eee8df;
+  border-radius: 12px;
+}
+
+.music-upload small {
+  display: block;
+  margin-top: 8px;
+  color: #887b6d;
+  font-size: 11px;
+}
+
+.music-upload input[type="file"] {
+  width: 100%;
+  margin: 12px 0;
+}
+
+/* MUSIC PLAYER */
+
+.music-player {
+  margin: 25px 0;
+  padding: 25px;
+  background: #eee8df;
+  border-radius: 14px;
+}
+
+.music-player h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 23px;
+  margin: 12px 0 4px;
+}
+
+.music-player p {
+  color: #887b6d;
+}
+
+.music-player audio,
+#audioPreview audio {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+}
