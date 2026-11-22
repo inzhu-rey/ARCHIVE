@@ -55,6 +55,20 @@ function closeModal() {
 }
 
 $("photoInput").addEventListener("change", event => {
+$("audioInput").addEventListener("change", event => {
+  selectedAudio = event.target.files[0] || null;
+
+  const preview = $("audioPreview");
+  preview.innerHTML = "";
+
+  if (selectedAudio) {
+    const audio = document.createElement("audio");
+    audio.controls = true;
+    audio.src = URL.createObjectURL(selectedAudio);
+
+    preview.appendChild(audio);
+  }
+});
   selectedPhotos = Array.from(event.target.files);
   const preview = $("preview");
   preview.innerHTML = "";
