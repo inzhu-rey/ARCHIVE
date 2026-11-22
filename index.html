@@ -126,6 +126,36 @@
       placeholder="Write something worth remembering..."></textarea>
 
     <button type="submit" class="main-btn">
+<div class="music-upload">
+  <p class="eyebrow">04 — YOUR SOUNDTRACK</p>
+
+  <label>Song title</label>
+  <input
+    id="songTitle"
+    type="text"
+    maxlength="100"
+    placeholder="Song name..."
+  >
+
+  <label>Artist</label>
+  <input
+    id="songArtist"
+    type="text"
+    maxlength="100"
+    placeholder="Artist name..."
+  >
+
+  <label>Upload your music</label>
+  <input
+    id="audioInput"
+    type="file"
+    accept="audio/*"
+  >
+
+  <small>MP3, WAV and other supported audio formats</small>
+
+  <div id="audioPreview"></div>
+</div>
       SAVE TO ARCHIVE ↗
     </button>
   </form>
