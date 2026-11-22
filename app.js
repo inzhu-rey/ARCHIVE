@@ -94,6 +94,11 @@ $("memoryForm").addEventListener("submit", async event => {
     date: $("memoryDate").value,
     place: $("memoryPlace").value.trim(),
     note: $("memoryNote").value.trim(),
+songTitle: $("songTitle").value.trim(),
+songArtist: $("songArtist").value.trim(),
+audio: selectedAudio
+  ? selectedAudio.slice(0, selectedAudio.size, selectedAudio.type)
+  : null,
     favorite: false,
     photos: selectedPhotos.map(file => file.slice(0, file.size, file.type))
   };
