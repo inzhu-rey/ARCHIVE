@@ -6,6 +6,7 @@ let db;
 let memories = [];
 let currentFilter = "all";
 let selectedPhotos = [];
+let selectedAudio = null;
 
 const $ = id => document.getElementById(id);
 
