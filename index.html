@@ -1,172 +1,416 @@
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f4f0e9">
-  <title>ARCHIVE — Keep your moments</title>
+
+  <meta name="theme-color" content="#f6f3ee">
+  <meta name="description" content="ARCHIVE — a personal space for memories, photographs and moments.">
+
+  <title>ARCHIVE — Keep your memories</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
+
+  <script src="app.js" defer></script>
 </head>
+
 <body>
 
-<header class="navbar">
-  <a href="#" class="logo">A. <span>ARCHIVE</span></a>
-  <nav>
-    <a href="#collection">Collection</a>
-    <a href="#about">About</a>
-  </nav>
-  <button class="add-btn" onclick="openModal()">+ Add memory</button>
-</header>
+  <!-- NAVIGATION -->
 
-<section class="hero">
-  <div class="hero-content">
-    <p class="eyebrow">PERSONAL MEMORY SPACE</p>
-    <h1>Some moments<br>deserve to <em>stay.</em></h1>
-    <p class="subtitle">
-      A beautiful place for your memories.
-      Save photographs, stories and little moments of life.
-    </p>
-    <button class="main-btn" onclick="openModal()">
-      SAVE A MOMENT ↗
+  <header class="site-header">
+    <a href="#" class="logo">ARCHIVE<span>.</span></a>
+
+    <nav class="navigation">
+      <a href="#home">Home</a>
+      <a href="#collection">Collection</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <button class="header-button" onclick="openModal()">
+      + New memory
     </button>
-  </div>
-  <div class="hero-image">
-    <div class="image-card card-one">MEMORIES / 001</div>
-    <div class="image-card card-two">SOMEWHERE IN TIME</div>
-    <div class="image-stamp">EST. 2026</div>
-  </div>
-</section>
+  </header>
 
-<section class="collection" id="collection">
-  <div class="section-heading">
-    <div>
-      <p class="eyebrow">01 — YOUR STORY</p>
-      <h2>The collection<span>.</span></h2>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <p class="eyebrow">A PERSONAL MEMORY SPACE</p>
+
+        <h1>
+          Some moments<br>
+          deserve to <em>stay.</em>
+        </h1>
+
+        <p class="hero-description">
+          A quiet place for photographs, stories,
+          songs and everything you never want to forget.
+        </p>
+
+        <button class="main-btn" onclick="openModal()">
+          CREATE A MEMORY ↗
+        </button>
+
+      </div>
+
+      <div class="hero-decoration">
+        <div class="hero-image">
+          <div class="hero-image-text">
+            <span>COLLECT MOMENTS</span>
+            <span>NOT THINGS.</span>
+          </div>
+        </div>
+
+        <span class="hero-caption">
+          YOUR LIFE, PRESERVED.
+        </span>
+      </div>
+
+    </section>
+
+
+    <!-- COLLECTION -->
+
+    <section class="collection-section" id="collection">
+
+      <div class="section-top">
+
+        <div>
+          <p class="eyebrow">YOUR PERSONAL COLLECTION</p>
+          <h2>Memory <em>archive.</em></h2>
+          <p class="section-description">
+            Every photograph holds a story.
+          </p>
+        </div>
+
+        <div class="memory-counter">
+          <span id="memoryCount">00</span>
+          <small>MEMORIES</small>
+        </div>
+
+      </div>
+
+
+      <!-- SEARCH AND SORT -->
+
+      <div class="toolbar">
+
+        <div class="search-box">
+          <span>⌕</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Search memories..."
+          >
+        </div>
+
+        <select id="sortSelect" aria-label="Sort memories">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+
+      </div>
+
+
+      <!-- FILTERS -->
+
+      <div class="filters">
+
+        <button
+          class="filter active"
+          onclick="setFilter('all', this)"
+        >
+          All memories
+        </button>
+
+        <button
+          class="filter"
+          onclick="setFilter('favorites', this)"
+        >
+          ♥ Favorites
+        </button>
+
+      </div>
+
+
+      <!-- MEMORY GRID -->
+
+      <div class="memory-grid" id="memoryGrid"></div>
+
+
+      <!-- EMPTY STATE -->
+
+      <div class="empty-state" id="emptyState">
+
+        <div class="empty-icon">✳</div>
+
+        <h3>No memories yet.</h3>
+
+        <p>
+          Your collection is waiting for its first story.
+        </p>
+
+        <button class="main-btn" onclick="openModal()">
+          ADD YOUR FIRST MEMORY ↗
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about-section" id="about">
+
+      <p class="eyebrow">WHY ARCHIVE EXISTS</p>
+
+      <h2>
+        Life moves fast.<br>
+        <em>Memories stay.</em>
+      </h2>
+
+      <p>
+        ARCHIVE is your personal digital space
+        to preserve the little things that make
+        life unforgettable.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- ADD MEMORY MODAL -->
+
+  <dialog id="memoryModal" class="modal">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <div>
+          <p class="eyebrow">PRESERVE A MOMENT</p>
+          <h2>New <em>memory.</em></h2>
+        </div>
+
+        <button
+          type="button"
+          class="close-btn"
+          onclick="closeModal()"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="memoryForm">
+
+        <!-- TITLE -->
+
+        <label for="memoryTitle">
+          Memory title
+        </label>
+
+        <input
+          type="text"
+          id="memoryTitle"
+          placeholder="Give this moment a name..."
+          maxlength="100"
+          required
+        >
+
+
+        <!-- DATE -->
+
+        <label for="memoryDate">
+          Date
+        </label>
+
+        <input
+          type="date"
+          id="memoryDate"
+          required
+        >
+
+
+        <!-- PLACE -->
+
+        <label for="memoryPlace">
+          Location
+        </label>
+
+        <input
+          type="text"
+          id="memoryPlace"
+          placeholder="Where did it happen?"
+          maxlength="150"
+        >
+
+
+        <!-- STORY -->
+
+        <label for="memoryNote">
+          Your story
+        </label>
+
+        <textarea
+          id="memoryNote"
+          placeholder="Write down what you want to remember..."
+          rows="4"
+          maxlength="2000"
+        ></textarea>
+
+
+        <!-- PHOTOS -->
+
+        <div class="upload-section">
+
+          <p class="eyebrow">01 — PHOTOGRAPHS</p>
+
+          <label for="photoInput">
+            Choose your photographs
+          </label>
+
+          <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            multiple
+            required
+          >
+
+          <small>
+            You can select multiple photos.
+          </small>
+
+          <div id="preview" class="photo-preview"></div>
+
+        </div>
+
+
+        <!-- MUSIC -->
+
+        <div class="music-upload">
+
+          <p class="eyebrow">02 — YOUR SOUNDTRACK</p>
+
+          <label for="songTitle">
+            Song title
+          </label>
+
+          <input
+            type="text"
+            id="songTitle"
+            maxlength="100"
+            placeholder="Song name..."
+          >
+
+          <label for="songArtist">
+            Artist
+          </label>
+
+          <input
+            type="text"
+            id="songArtist"
+            maxlength="100"
+            placeholder="Artist name..."
+          >
+
+          <label for="audioInput">
+            Upload your music
+          </label>
+
+          <input
+            type="file"
+            id="audioInput"
+            accept="audio/*"
+          >
+
+          <small>
+            Add an audio file to listen to it
+            whenever you revisit this memory.
+          </small>
+
+          <div id="audioPreview"></div>
+
+        </div>
+
+
+        <!-- SUBMIT -->
+
+        <button
+          type="submit"
+          class="main-btn submit-btn"
+        >
+          SAVE TO ARCHIVE ↗
+        </button>
+
+      </form>
+
     </div>
-    <div class="counter">
-      <strong id="memoryCount">00</strong>
-      <small>SAVED MOMENTS</small>
-    </div>
-  </div>
 
-  <div class="toolbar">
-    <input id="searchInput" type="search"
-      placeholder="Search memories...">
-    <div class="filters">
-      <button class="filter active" onclick="setFilter('all',this)">All</button>
-      <button class="filter" onclick="setFilter('favorites',this)">♡ Favorites</button>
-      <select id="sortSelect" onchange="renderMemories()">
-        <option value="newest">Newest first</option>
-        <option value="oldest">Oldest first</option>
-      </select>
-    </div>
-  </div>
+  </dialog>
 
-  <div class="memory-grid" id="memoryGrid"></div>
 
-  <div class="empty-state" id="emptyState">
-    <span>✳</span>
-    <h3>Your story starts here.</h3>
-    <p>Add your first photograph and save a moment.</p>
-    <button class="main-btn" onclick="openModal()">
-      ADD FIRST MEMORY ↗
-    </button>
-  </div>
-</section>
+  <!-- MEMORY DETAILS MODAL -->
 
-<section class="quote" id="about">
-  <span>✳</span>
-  <h2>We do not remember days,<br>
-    we remember <em>moments.</em>
-  </h2>
-  <small>— CESARE PAVESE</small>
-</section>
+  <dialog id="detailModal" class="modal detail-modal">
 
-<footer>
-  <a href="#" class="logo">A. ARCHIVE</a>
-  <p>MADE TO KEEP WHAT MATTERS © 2026</p>
-  <a href="#">BACK TO TOP ↑</a>
-</footer>
+    <div class="modal-content">
 
-<dialog id="memoryModal">
-  <form id="memoryForm">
-    <div class="modal-header">
-      <p class="eyebrow">NEW MEMORY</p>
-      <button type="button" onclick="closeModal()">×</button>
+      <div class="modal-header">
+
+        <p class="eyebrow">A MOMENT TO REMEMBER</p>
+
+        <button
+          type="button"
+          class="close-btn"
+          onclick="document.getElementById('detailModal').close()"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <div id="detailContent"></div>
+
     </div>
 
-    <h2>Save a moment<span>.</span></h2>
+  </dialog>
 
-    <label class="upload-area">
-      <span>＋</span>
-      <strong>Choose photographs</strong>
-      <small>You can select multiple images</small>
-      <input type="file" id="photoInput"
-        accept="image/*" multiple required>
-    </label>
 
-    <div id="preview"></div>
+  <!-- TOAST -->
 
-    <label>Memory title</label>
-    <input id="memoryTitle" maxlength="80"
-      placeholder="A beautiful day..." required>
+  <div class="toast" id="toast" role="status"></div>
 
-    <label>Date</label>
-    <input id="memoryDate" type="date" required>
 
-    <label>Location</label>
-    <input id="memoryPlace" maxlength="100"
-      placeholder="Where was this?">
+  <!-- FOOTER -->
 
-    <label>Your story</label>
-    <textarea id="memoryNote" maxlength="500"
-      placeholder="Write something worth remembering..."></textarea>
+  <footer class="site-footer">
 
-    <button type="submit" class="main-btn">
-<div class="music-upload">
-  <p class="eyebrow">04 — YOUR SOUNDTRACK</p>
+    <a href="#" class="logo">ARCHIVE<span>.</span></a>
 
-  <label>Song title</label>
-  <input
-    id="songTitle"
-    type="text"
-    maxlength="100"
-    placeholder="Song name..."
-  >
+    <p>MADE TO KEEP WHAT MATTERS.</p>
 
-  <label>Artist</label>
-  <input
-    id="songArtist"
-    type="text"
-    maxlength="100"
-    placeholder="Artist name..."
-  >
+    <span>© 2026 ARCHIVE</span>
 
-  <label>Upload your music</label>
-  <input
-    id="audioInput"
-    type="file"
-    accept="audio/*"
-  >
+  </footer>
 
-  <small>MP3, WAV and other supported audio formats</small>
-
-  <div id="audioPreview"></div>
-</div>
-      SAVE TO ARCHIVE ↗
-    </button>
-  </form>
-</dialog>
-
-<dialog id="detailModal">
-  <div id="detailContent"></div>
-</dialog>
-
-<div id="toast"></div>
-
-<script src="app.js"></script>
 </body>
 </html>
